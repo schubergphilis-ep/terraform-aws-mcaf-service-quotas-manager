@@ -1,5 +1,5 @@
 ---
-name: "Lint and Format"
+name: "Python Test"
 
 on:
   push:
@@ -11,8 +11,8 @@ permissions:
   contents: read
 
 jobs:
-    lint-application-code:
-      name: Lint application code
+    test-application-code:
+      name: Test application code
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
@@ -29,6 +29,7 @@ jobs:
           working-directory: ./service_quotas_manager
           run: pipenv install --dev
 
-        - name: Lint application code
+        - name: Test application code
           working-directory: ./service_quotas_manager
-          run: pipenv run ruff check .
+          run: pipenv run python3 -m pytest tests --cov=service_quotas_manager -x -rP
+
