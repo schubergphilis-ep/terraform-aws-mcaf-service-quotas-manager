@@ -1,0 +1,35 @@
+---
+name: "Python Test"
+
+on:
+  push:
+    branches:
+        - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+    test-application-code:
+      name: Test application code
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+
+        - name: setup-python
+          uses: actions/setup-python@v4
+          with:
+            python-version: "3.11"
+
+        - name: Install pipenv
+          run: pip install pipenv
+
+        - name: Install dev dependencies
+          working-directory: ./service_quotas_manager
+          run: pipenv install --dev
+
+        - name: Test application code
+          working-directory: ./service_quotas_manager
+          run: pipenv run python3 -m pytest tests --cov=service_quotas_manager -x -rP
+
