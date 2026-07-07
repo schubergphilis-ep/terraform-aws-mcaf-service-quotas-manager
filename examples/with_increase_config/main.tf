@@ -86,7 +86,8 @@ data "aws_iam_policy_document" "kms_key_policy_service_quotas_manager" {
 }
 
 module "service_quotas_manager_kms_key" {
-  source = "github.com/schubergphilis/terraform-aws-mcaf-kms?ref=v0.3.0"
+  source  = "schubergphilis-ep/mcaf-kms/aws"
+  version = "~> 0.3.0"
 
   name                = "service-quotas-manager"
   description         = "KMS key used for encrypting resources used by the service quotas manager"
