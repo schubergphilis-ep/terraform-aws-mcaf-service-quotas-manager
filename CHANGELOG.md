@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.0.1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/compare/v2.0.0...v2.0.1) (2026-07-07)
+
+
+### 🐛 Fixes
+
+* migrate MCAF module sources ([#2](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/issues/2)) ([127940a](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/commit/127940a6190a03b6aeefa2e1dcc84bfbc539a65a))
+
 ## [2.0.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/compare/v1.0.2...v2.0.0) (2026-03-27)
 
 
@@ -109,4 +116,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * enhancement: Extend supported quotas ([#4](https://github.com/schubergphilis/terraform-aws-mcaf-service-quotas-manager/pull/4)) ([8c55cb7](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/commit/8c55cb72d11f813fe6555ea0ffbca77cb087a31a))
 
 ## 0.1.0 (2023-12-28)
-
