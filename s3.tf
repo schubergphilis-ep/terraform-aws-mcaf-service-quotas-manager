@@ -1,5 +1,5 @@
 module "service_quotas_manager_bucket" {
-  source  = "schubergphilis/mcaf-s3/aws"
+  source  = "schubergphilis-ep/mcaf-s3/aws"
   version = "~> 2.0.0"
 
   name          = var.bucket_name
