@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.0.2](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/compare/v2.0.1...v2.0.2) (2026-07-07)
+
+
+### 🐛 Fixes
+
+* update references of the examples and bump s3 module ([#4](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/issues/4)) ([3e345eb](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/commit/3e345ebbb7254ededa9c3f1fb4c0b46c396d7a46))
+
 ## [2.0.1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/compare/v2.0.0...v2.0.1) (2026-07-07)
 
 
