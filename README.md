@@ -179,7 +179,7 @@ Each role requires the following policies attached:
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_service_quotas_manager_bucket"></a> [service\_quotas\_manager\_bucket](#module\_service\_quotas\_manager\_bucket) | schubergphilis-ep/mcaf-s3/aws | ~> 2.0.0 |
+| <a name="module_service_quotas_manager_bucket"></a> [service\_quotas\_manager\_bucket](#module\_service\_quotas\_manager\_bucket) | schubergphilis-ep/mcaf-s3/aws | ~> 3.0.0 |
 | <a name="module_service_quotas_manager_lambda"></a> [service\_quotas\_manager\_lambda](#module\_service\_quotas\_manager\_lambda) | schubergphilis-ep/mcaf-lambda/aws | ~> 3.0.0 |
 
 ## Resources
