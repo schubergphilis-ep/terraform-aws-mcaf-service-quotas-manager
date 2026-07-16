@@ -45,7 +45,7 @@ module "service_quotas_manager_lambda" {
   # Also see https://docs.powertools.aws.dev/lambda/python/latest/#lambda-layer.
   # And https://docs.aws.amazon.com/powertools/python/3.24.0/getting-started/install/#lambda-layer
   layers = [
-    "arn:aws:lambda:${local.account_region}:017000801446:layer:AWSLambdaPowertoolsPythonV3-python311-x86_64:27"
+    "arn:aws:lambda:${local.account_region}:017000801446:layer:AWSLambdaPowertoolsPythonV3-python311-x86_64:33"
   ]
 
   tags = var.tags
