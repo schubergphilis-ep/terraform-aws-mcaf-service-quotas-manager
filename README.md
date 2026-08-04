@@ -16,7 +16,7 @@ This Service Quotas Manager can be installed as part as an AWS Organization or i
 
 1. Automated requesting of service quota increases by configurable steps and motivations for support case updates (requires at least AWS Business Support and alarms to be enabled).
 
-Please see [supported quotas](https://github.com/schubergphilis/terraform-aws-mcaf-service-quotas-manager/blob/main/SUPPORTED_QUOTAS.md) for an overview of supported services and service quotas.
+Please see [supported quotas](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/blob/main/SUPPORTED_QUOTAS.md) for an overview of supported services and service quotas.
 
 ## Prerequisites & considerations
 
@@ -34,7 +34,7 @@ AWS Service Quotas by default only works with AWS CloudWatch. A limited set of S
 
 In order to collect usage from AWS Config, this tool uses the 'advanced query' functionality in AWS Config. The queries return a list of serialized JSON objects as a resultset and a JMESPath expression is used to convert that resultset to a re-usable number. Extending the queries - and thus the number of supported service quotas - is relatively easy and can be done by extending the custom collection queries file.
 
-As an example, in [custom_collection_queries.json](https://github.com/schubergphilis/terraform-aws-mcaf-service-quotas-manager/blob/main/service_quotas_manager/service_quotas_manager/custom_collection_queries.json):
+As an example, in [custom_collection_queries.json](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/blob/main/service_quotas_manager/service_quotas_manager/custom_collection_queries.json):
 
 ```jsonc annotate
 {
@@ -86,13 +86,13 @@ module "service_quotas_manager" {
 }
 ```
 
-See the [examples](https://github.com/schubergphilis/terraform-aws-mcaf-service-quotas-manager/tree/main/examples) for more examples on how to configure thresholds and auto-increase rules.
+See the [examples](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/tree/main/examples) for more examples on how to configure thresholds and auto-increase rules.
 
 ### Target Accounts
 
 #### Roles
 
-This manager works by assuming roles in your target accounts from a single central management account to collect applied service quotas and usage metrics. Every account you want to be managed requires a role that can be assumed by the service quota manager. Setting up these roles is not part of this solution but could be part of - for example - your account baseline. It's already part of the MCAF [account baseline](https://github.com/schubergphilis/terraform-aws-mcaf-account-baseline).
+This manager works by assuming roles in your target accounts from a single central management account to collect applied service quotas and usage metrics. Every account you want to be managed requires a role that can be assumed by the service quota manager. Setting up these roles is not part of this solution but could be part of - for example - your account baseline. It's already part of the MCAF [account baseline](https://github.com/schubergphilis-ep/terraform-aws-mcaf-account-baseline).
 
 Each role requires the following trust policy:
 
@@ -228,4 +228,4 @@ Each role requires the following policies attached:
 
 ## Licensing
 
-100% Open Source and licensed under the Apache License Version 2.0. See [LICENSE](https://github.com/schubergphilis/terraform-aws-mcaf-service-quotas-manager/blob/main/LICENSE) for full details.
+100% Open Source and licensed under the Apache License Version 2.0. See [LICENSE](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/blob/main/LICENSE) for full details.
