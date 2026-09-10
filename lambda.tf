@@ -14,7 +14,7 @@ data "archive_file" "service_quotas_manager_source" {
 
 module "service_quotas_manager_lambda" {
   source  = "schubergphilis-ep/mcaf-lambda/aws"
-  version = "~> 3.0.0"
+  version = "~> 4.2.0"
 
   #checkov:skip=CKV_AWS_338:Ensure CloudWatch log groups retains logs for at least 1 year
   filename = data.archive_file.service_quotas_manager_source.output_path
