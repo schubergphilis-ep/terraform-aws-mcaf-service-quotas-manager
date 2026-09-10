@@ -128,7 +128,7 @@ variable "tags" {
 }
 
 variable "powertools_layer_version" {
-  description = "The version of the Powertools Lambda layer to use."
+  description = "The version of the Powertools Lambda layer to use. If omitted the latest version is used."
   type        = string
   default     = null
 }
