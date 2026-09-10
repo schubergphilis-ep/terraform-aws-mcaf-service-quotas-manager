@@ -26,8 +26,8 @@ module "service_quotas_manager_bucket" {
   ]
 
   logging = var.s3_access_logging.enabled ? {
-    target_bucket = local.access_logs_bucket_name
-    target_prefix = "${local.bucket_base_name}-"
+    target_bucket = module.access_logs[0].name
+    target_prefix = coalesce(var.bucket_prefix, var.bucket_name)
     target_object_key_format = {
       format_type           = "partitioned"
       partition_date_source = "EventTime"
@@ -41,7 +41,9 @@ module "access_logs" {
   source  = "schubergphilis-ep/mcaf-s3/aws"
   version = "~> 4.0.0"
 
-  name   = local.access_logs_bucket_name
+  name        = local.access_logs_bucket_name
+  name_prefix = local.access_logs_bucket_prefix
+
   region = var.region
   tags   = var.tags
 
