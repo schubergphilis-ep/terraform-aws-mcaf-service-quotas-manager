@@ -203,6 +203,7 @@ Each role requires the following policies attached:
 | [archive_file.service_quotas_manager_source](https://registry.terraform.io/providers/hashicorp/archive/latest/docs/data-sources/file) | data source |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
+| [aws_ssm_parameter.powertools_layer_arn](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ssm_parameter) | data source |
 
 ## Inputs
 
@@ -214,6 +215,7 @@ Each role requires the following policies attached:
 | <a name="input_bucket_name"></a> [bucket\_name](#input\_bucket\_name) | The optional name for the service quotas manager configuration bucket, overrides `bucket_prefix`. | `string` | `null` | no |
 | <a name="input_bucket_prefix"></a> [bucket\_prefix](#input\_bucket\_prefix) | The prefix for the service quotas manager configuration bucket. | `string` | `"service-quotas-manager-"` | no |
 | <a name="input_execution_role"></a> [execution\_role](#input\_execution\_role) | Configuration of the IAM role of the service quotas manager lambda | <pre>object({<br/>    name_prefix          = optional(string, "ServiceQuotasManagerExecutionRole")<br/>    path                 = optional(string, "/")<br/>    permissions_boundary = optional(string, null)<br/>  })</pre> | `{}` | no |
+| <a name="input_powertools_layer_version"></a> [powertools\_layer\_version](#input\_powertools\_layer\_version) | The version of the Powertools Lambda layer to use. If omitted the latest version is used. | `string` | `null` | no |
 | <a name="input_region"></a> [region](#input\_region) | The AWS region where the resources will be created. If omitted, the default provider region is used. | `string` | `null` | no |
 | <a name="input_s3_access_logging"></a> [s3\_access\_logging](#input\_s3\_access\_logging) | Configuration of access logging related variables. | <pre>object({<br/>    enabled                  = optional(bool, true)<br/>    expiration_days          = optional(number, 720)<br/>    transition_days          = optional(number, 90)<br/>    transition_storage_class = optional(string, "GLACIER_IR")<br/>  })</pre> | `{}` | no |
 | <a name="input_schedule_timezone"></a> [schedule\_timezone](#input\_schedule\_timezone) | The timezone to schedule service quota metric collection in | `string` | `"Europe/Amsterdam"` | no |

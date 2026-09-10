@@ -44,9 +44,9 @@ module "service_quotas_manager_lambda" {
   # Use a AWS provided layer to include Powertools to simplify the redistribution process.
   # Also see https://docs.powertools.aws.dev/lambda/python/latest/#lambda-layer.
   # And https://docs.aws.amazon.com/powertools/python/3.24.0/getting-started/install/#lambda-layer
-  layers = [
-    "arn:aws:lambda:${local.account_region}:017000801446:layer:AWSLambdaPowertoolsPythonV3-python311-x86_64:33"
-  ]
+  # Since the value is read from a public SSM parameter,
+  # it is explicitly marked as nonsensitive to provide visibility in terraform plans.
+  layers = [nonsensitive(local.powertools_layer_arn)]
 
   tags = var.tags
 }

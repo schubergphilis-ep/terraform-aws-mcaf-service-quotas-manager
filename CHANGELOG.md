@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.1.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/compare/v2.0.2...v2.1.0) (2026-09-10)
+
+
+### 🚀 Features
+
+* default to latest powertools layer arn ([#9](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/issues/9)) ([a2d3a46](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/commit/a2d3a46be042006eab102ee4c34b7a6681550389))
+
 ## [2.0.2](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/compare/v2.0.1...v2.0.2) (2026-07-07)
 
 
