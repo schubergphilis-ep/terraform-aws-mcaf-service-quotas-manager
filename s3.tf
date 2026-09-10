@@ -27,7 +27,7 @@ module "service_quotas_manager_bucket" {
 
   logging = var.s3_access_logging.enabled ? {
     target_bucket = module.access_logs[0].name
-    target_prefix = coalesce(var.bucket_prefix, var.bucket_name)
+    target_prefix = "${module.access_logs[0].name}-"
     target_object_key_format = {
       format_type           = "partitioned"
       partition_date_source = "EventTime"
