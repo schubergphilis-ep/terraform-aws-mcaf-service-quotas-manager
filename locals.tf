@@ -6,7 +6,7 @@ locals {
 
   access_logs_bucket_name   = var.bucket_name != null ? "${var.bucket_name}-access-logs" : null
   access_logs_bucket_prefix = var.bucket_name == null && var.bucket_prefix != null ? "${var.bucket_prefix}access-logs" : null
-  
+
   powertools_layer_parts = split(":", data.aws_ssm_parameter.powertools_layer_arn.value)
 
   powertools_layer_arn = (
