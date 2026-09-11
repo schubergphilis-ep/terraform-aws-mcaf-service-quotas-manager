@@ -15,7 +15,7 @@ variable "assume_role" {
 variable "bucket_prefix" {
   description = "The prefix for the service quotas manager configuration bucket."
   type        = string
-  default     = "service-quotas-manager-"
+  default     = "service-quotas-manager"
 }
 
 variable "bucket_name" {
