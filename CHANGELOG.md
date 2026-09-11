@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.2.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/compare/v2.1.0...v2.2.0) (2026-09-11)
+
+
+### 🚀 Features
+
+* create s3 access logging bucket ([#10](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/issues/10)) ([c9fa6aa](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/commit/c9fa6aa5fb063fd42e1a63c1d66373956b217303))
+
 ## [2.1.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/compare/v2.0.2...v2.1.0) (2026-09-10)
 
 
