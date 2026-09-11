@@ -48,6 +48,14 @@ override_module {
   }
 }
 
+override_module {
+  target = module.access_logs
+  outputs = {
+    name = "service-quotas-manager-bucket-access-logs"
+    arn  = "arn:aws:s3:::service-quotas-manager-bucket-access-logs"
+  }
+}
+
 run "setup_tests" {
   module {
     source = "./tests/setup"
@@ -93,6 +101,42 @@ run "basic" {
   assert {
     condition     = jsondecode(aws_iam_policy.service_quotas_manager_execution_policy.policy)["Statement"][2]["Resource"][0] == "arn:aws:iam::*:role/ServiceQuotasManagerRole"
     error_message = "Expected wildcard ARN pattern: arn:aws:iam::*:role/ServiceQuotasManagerRole"
+  }
+
+  assert {
+    condition     = length(module.access_logs) == 1
+    error_message = "Expected the access logs bucket to be created when s3_access_logging is enabled (default)."
+  }
+}
+
+run "access_logging_disabled" {
+  command = apply
+
+  variables {
+    bucket_prefix = "sqmtest-no-access-logs-"
+    kms_key_arn   = "arn:aws:kms:eu-west-1:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+
+    s3_access_logging = {
+      enabled = false
+    }
+
+    quotas_manager_configuration = [
+      {
+        account_id = "123456789000"
+        selected_services = [
+          "AWS Lambda",
+        ]
+        alerting_config = {
+          default_threshold_perc = 75
+          notification_topic_arn = "arn:aws:sns:eu-west-1:123456789000:service-quotas-manager-notifications"
+        }
+      }
+    ]
+  }
+
+  assert {
+    condition     = length(module.access_logs) == 0
+    error_message = "Expected no access logs bucket to be created when s3_access_logging is disabled."
   }
 }
 

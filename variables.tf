@@ -88,6 +88,17 @@ variable "region" {
   description = "The AWS region where the resources will be created. If omitted, the default provider region is used."
 }
 
+variable "s3_access_logging" {
+  description = "Configuration of access logging related variables."
+  type = object({
+    enabled                  = optional(bool, true)
+    expiration_days          = optional(number, 720)
+    transition_days          = optional(number, 90)
+    transition_storage_class = optional(string, "GLACIER_IR")
+  })
+  default = {}
+}
+
 variable "schedule_timezone" {
   description = "The timezone to schedule service quota metric collection in"
   type        = string

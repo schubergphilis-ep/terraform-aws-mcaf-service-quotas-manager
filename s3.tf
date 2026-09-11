@@ -1,6 +1,6 @@
 module "service_quotas_manager_bucket" {
   source  = "schubergphilis-ep/mcaf-s3/aws"
-  version = "~> 3.0.0"
+  version = "~> 4.0.0"
 
   name          = var.bucket_name
   name_prefix   = var.bucket_name == null ? var.bucket_prefix : null
@@ -12,8 +12,8 @@ module "service_quotas_manager_bucket" {
 
   lifecycle_rule = [
     {
-      id     = "default"
-      status = "Enabled"
+      id      = "default"
+      enabled = true
 
       abort_incomplete_multipart_upload = {
         days_after_initiation = 7
@@ -24,6 +24,56 @@ module "service_quotas_manager_bucket" {
       }
     }
   ]
+
+  logging = var.s3_access_logging.enabled ? {
+    target_bucket = module.access_logs[0].name
+    target_prefix = "logs/"
+    target_object_key_format = {
+      format_type           = "partitioned"
+      partition_date_source = "EventTime"
+    }
+  } : null
+}
+
+module "access_logs" {
+  count = var.s3_access_logging.enabled ? 1 : 0
+
+  source  = "schubergphilis-ep/mcaf-s3/aws"
+  version = "~> 4.0.0"
+
+  name        = local.access_logs_bucket_name
+  name_prefix = local.access_logs_bucket_prefix
+
+  region = var.region
+  tags   = var.tags
+
+  lifecycle_rule = [
+    {
+      id      = "RetentionPolicy"
+      enabled = true
+
+      abort_incomplete_multipart_upload = {
+        days_after_initiation = 3
+      }
+
+      expiration = {
+        days = var.s3_access_logging.expiration_days
+      }
+
+      noncurrent_version_expiration = {
+        noncurrent_days = 7
+      }
+
+      transition = [
+        {
+          days          = var.s3_access_logging.transition_days
+          storage_class = var.s3_access_logging.transition_storage_class
+        }
+      ]
+    }
+  ]
+
+  logging_source_bucket_arns = [module.service_quotas_manager_bucket.arn]
 }
 
 resource "aws_s3_object" "service_quotas_manager_config" {
