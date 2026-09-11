@@ -22,7 +22,12 @@ module "service_quotas_manager_bucket" {
       noncurrent_version_expiration = {
         noncurrent_days = 14
       }
-    }
+    },
+    {
+      id         = "expired-delete-markers"
+      enabled    = true
+      expiration = { expired_object_delete_marker = true }
+    },
   ]
 
   logging = var.s3_access_logging.enabled ? {
@@ -70,7 +75,12 @@ module "access_logs" {
           storage_class = var.s3_access_logging.transition_storage_class
         }
       ]
-    }
+    },
+    {
+      id         = "expired-delete-markers"
+      enabled    = true
+      expiration = { expired_object_delete_marker = true }
+    },
   ]
 
   logging_source_bucket_arns = [module.service_quotas_manager_bucket.arn]
