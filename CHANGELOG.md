@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.2.1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/compare/v2.2.0...v2.2.1) (2026-09-11)
+
+
+### 🐛 Fixes
+
+* expire delete markers for versioned s3 buckets ([#13](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/issues/13)) ([785df21](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/commit/785df21f66dac34be7a710351437d80cf5a83f38))
+
 ## [2.2.0](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/compare/v2.1.0...v2.2.0) (2026-09-11)
 
 
