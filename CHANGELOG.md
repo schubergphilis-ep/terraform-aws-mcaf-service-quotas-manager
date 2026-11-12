@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.2.2](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/compare/v2.2.1...v2.2.2) (2026-11-12)
+
+
+### 🐛 Fixes
+
+* truncate bucket name and prefix to fit the access logs bucket name ([#15](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/issues/15)) ([4e6038a](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/commit/4e6038adcb19199174c1ab55d439189a5c6b477d))
+
 ## [2.2.1](https://github.com/schubergphilis-ep/terraform-aws-mcaf-service-quotas-manager/compare/v2.2.0...v2.2.1) (2026-09-11)
 
 
