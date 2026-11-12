@@ -28,6 +28,8 @@ Please see [supported quotas](https://github.com/schubergphilis-ep/terraform-aws
 
 * Most quotas are applied per region. This Service Quota Manager operates in a single region. Install the Service Quota Manager in more regions in order to monitor quotas in more regions.
 
+* S3 server access logging is enabled on the configuration bucket, and can be disabled with `var.s3_access_logging`. The access logs bucket is named `<bucket_name>-access-logs`, or gets the `<bucket_prefix>-access-logs` prefix when `var.bucket_name` is not set. As S3 bucket names are limited to 63 characters and bucket name prefixes to 37 characters, a `var.bucket_name` longer than 51 characters or a `var.bucket_prefix` longer than 25 characters is truncated to that length (dropping any trailing `-` or `.`) in the access logs bucket name. As bucket names are globally unique, two deployments whose `var.bucket_name` share the same first 51 characters will clash on the access logs bucket name.
+
 ### Remarks on usage collection via AWS Config
 
 AWS Service Quotas by default only works with AWS CloudWatch. A limited set of Service Quotas have a reference to a CloudWatch metric that is collected by default or as soon as one starts using a service. A lot of service quotas however do not have metrics available. There is - for example - no metric for the number of ENI's assigned to a Lambda function, but there is a service quota for it. This tool leverages AWS config - if enabled - to collect that information; because you rather know upfront if you can request a quota increase or should re-architect your solution.

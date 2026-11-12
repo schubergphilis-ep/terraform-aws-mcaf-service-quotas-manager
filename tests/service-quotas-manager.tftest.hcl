@@ -107,6 +107,71 @@ run "basic" {
     condition     = length(module.access_logs) == 1
     error_message = "Expected the access logs bucket to be created when s3_access_logging is enabled (default)."
   }
+
+  assert {
+    condition     = local.access_logs_bucket_prefix == "sqmtest-basic--access-logs"
+    error_message = "Expected a bucket_prefix that fits the 37 character limit to be used as is in the access logs bucket prefix."
+  }
+}
+
+run "access_logging_bucket_name" {
+  command = plan
+
+  variables {
+    bucket_name                  = "service-quotas-manager-test"
+    kms_key_arn                  = "arn:aws:kms:eu-west-1:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+    quotas_manager_configuration = [{ account_id = "123456789000" }]
+  }
+
+  assert {
+    condition     = local.access_logs_bucket_name == "service-quotas-manager-test-access-logs" && local.access_logs_bucket_prefix == null
+    error_message = "Expected the access logs bucket to be named '<bucket_name>-access-logs'."
+  }
+}
+
+run "access_logging_long_bucket_name" {
+  command = plan
+
+  variables {
+    bucket_name                  = "mns-core-audit-service-quotas-manager-configurations"
+    kms_key_arn                  = "arn:aws:kms:eu-west-1:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+    quotas_manager_configuration = [{ account_id = "123456789000" }]
+  }
+
+  assert {
+    condition     = local.access_logs_bucket_name == "mns-core-audit-service-quotas-manager-configuration-access-logs"
+    error_message = "Expected bucket_name to be truncated so the access logs bucket name fits the 63 character limit."
+  }
+}
+
+run "access_logging_long_bucket_name_trailing_hyphen" {
+  command = plan
+
+  variables {
+    bucket_name                  = "mns-core-audit-service-quotas-manager-quota-config-prod"
+    kms_key_arn                  = "arn:aws:kms:eu-west-1:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+    quotas_manager_configuration = [{ account_id = "123456789000" }]
+  }
+
+  assert {
+    condition     = local.access_logs_bucket_name == "mns-core-audit-service-quotas-manager-quota-config-access-logs"
+    error_message = "Expected the trailing '-' left by truncating bucket_name to be trimmed."
+  }
+}
+
+run "access_logging_long_bucket_prefix" {
+  command = plan
+
+  variables {
+    bucket_prefix                = "sqmtest-long-bucket-name-prefix"
+    kms_key_arn                  = "arn:aws:kms:eu-west-1:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+    quotas_manager_configuration = [{ account_id = "123456789000" }]
+  }
+
+  assert {
+    condition     = local.access_logs_bucket_prefix == "sqmtest-long-bucket-name-access-logs"
+    error_message = "Expected bucket_prefix to be truncated so the access logs bucket prefix fits the 37 character limit, and the trailing '-' left by the truncation to be trimmed."
+  }
 }
 
 run "access_logging_disabled" {

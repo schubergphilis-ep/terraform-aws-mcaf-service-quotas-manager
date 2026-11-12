@@ -4,8 +4,11 @@ locals {
 
   has_increase_config = sum([for item in var.quotas_manager_configuration : (item.quota_increase_config == null ? 0 : length(item.quota_increase_config))]) > 0
 
-  access_logs_bucket_name   = var.bucket_name != null ? "${var.bucket_name}-access-logs" : null
-  access_logs_bucket_prefix = var.bucket_name == null && var.bucket_prefix != null ? "${var.bucket_prefix}-access-logs" : null
+  # S3 bucket names are limited to 63 characters and bucket name prefixes to 37 characters: truncate the bucket name or
+  # prefix to fit the "-access-logs" suffix, and trim any "-" or "." the truncation leaves at the end. A prefix that fits
+  # is used as is, so the names of existing access logs buckets don't change.
+  access_logs_bucket_name   = var.bucket_name != null ? "${trim(substr(var.bucket_name, 0, 51), "-.")}-access-logs" : null
+  access_logs_bucket_prefix = var.bucket_name == null && var.bucket_prefix != null ? "${length(var.bucket_prefix) > 25 ? trim(substr(var.bucket_prefix, 0, 25), "-.") : var.bucket_prefix}-access-logs" : null
 
   powertools_layer_parts = split(":", data.aws_ssm_parameter.powertools_layer_arn.value)
 
